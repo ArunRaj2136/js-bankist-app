@@ -80,6 +80,26 @@ const displayMovements = function(movements) {
 };
 displayMovements(account1.movements);
 
+const displayBalance = function(movements) {
+    const balance = movements.reduce(function(acc, mov) {
+        return acc + mov;
+    }, 0);
+    labelBalance.textContent = `${balance} EUR`;
+};
+displayBalance(account1.movements);
+
+const createUserNames = function(accs) {
+    accs.forEach(function(acc) {
+        acc.username = acc.owner
+            .toLowerCase()
+            .split(' ')
+            .map(name => name[0])
+            .join('');
+    });
+};
+createUserNames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -93,3 +113,36 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+///////challengeeeee 11111////////////////
+// const dogsJulia = [3, 5, 2, 12, 7];
+// const dogsKate = [4, 1, 15, 8, 3];
+// const checkDogs = function(dogsJulia, dogsKate) {
+//     const dogJuliaCorrected = dogsJulia.slice();
+//     dogJuliaCorrected.splice(0, 1);
+//     dogJuliaCorrected.splice(-2);
+
+//     const dogs = dogJuliaCorrected.concat(dogsKate);
+//     console.log(dogs);
+//     dogs.forEach(function(age, i) {
+//         if (age >= 3) {
+//             console.log(`Dog number ${i + 1} is an adult,and is ${age} years old`);
+//         } else {
+//             console.log(`dog number ${i + 1} is still a puppy`);
+//         }
+//     });
+// };
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+// const calcHumanAge = function(ages) {
+//     const adultHuman = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+//     const adults = adultHuman.filter(age => age >= 18);
+//     console.log(adultHuman);
+//     console.log(adults);
+
+//     const averages = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+//     return averages;
+// };
+// console.log(calcHumanAge([1, 2, 3, 4, 5]));
+// const avg1 = calcHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// const avg2 = calcHumanAge([16, 3, 10, 5, 6, 1, 4]);
+// console.log(avg1, avg2);
