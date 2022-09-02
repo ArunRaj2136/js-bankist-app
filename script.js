@@ -79,11 +79,11 @@ const displayMovements = function(movements) {
     });
 };
 
-const displayBalance = function(movements) {
-    const balance = movements.reduce(function(acc, mov) {
+const displayBalance = function(acc) {
+    acc.balance = acc.movements.reduce(function(acc, mov) {
         return acc + mov;
     }, 0);
-    labelBalance.textContent = `${balance} €`;
+    labelBalance.textContent = `${acc.balance} €`;
 };
 
 const displaySummary = function(acc) {
@@ -137,9 +137,27 @@ btnLogin.addEventListener('click', function(e) {
         ///display movements
         displayMovements(currentAccount.movements);
         ////display balance
-        displayBalance(currentAccount.movements);
+        displayBalance(currentAccount);
         ////display summmary
         displaySummary(currentAccount);
+    }
+});
+
+btnTransfer.addEventListener('click', function(e) {
+    e.preventDefault();
+    const amount = Number(inputTransferAmount.value);
+    const receiverAcc = accounts.find(
+        acc => acc.username === inputTransferTo.value
+    );
+    console.log(amount, receiverAcc);
+
+    if (
+        amount > 0 &&
+        receiverAcc &&
+        currentAccount.balance >= amount &&
+        receiverAcc.username !== currentAccount.username
+    ) {
+        console.log('transfer valid');
     }
 });
 
