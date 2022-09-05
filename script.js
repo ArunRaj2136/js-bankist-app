@@ -180,8 +180,10 @@ btnLoan.addEventListener('click', function(e) {
     e.preventDefault();
     const amount = Number(inputLoanAmount.value);
     if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-        currentAccount.movements.push(amount);
-        updateUI(currentAccount);
+        setTimeout(function() {
+            currentAccount.movements.push(amount);
+            updateUI(currentAccount);
+        }, 3000);
     }
     inputLoanAmount.value = ' ';
 });
@@ -207,69 +209,3 @@ btnSort.addEventListener('click', function(e) {
     displayMovements(currentAccount.movements, !sorted);
     sorted = !sorted;
 });
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-// const currencies = new Map([
-//     ['USD', 'United States dollar'],
-//     ['EUR', 'Euro'],
-//     ['GBP', 'Pound sterling'],
-// ]);
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-///////challengeeeee 11111////////////////
-// const dogsJulia = [3, 5, 2, 12, 7];
-// const dogsKate = [4, 1, 15, 8, 3];
-// const checkDogs = function(dogsJulia, dogsKate) {
-//     const dogJuliaCorrected = dogsJulia.slice();
-//     dogJuliaCorrected.splice(0, 1);
-//     dogJuliaCorrected.splice(-2);
-
-//     const dogs = dogJuliaCorrected.concat(dogsKate);
-//     console.log(dogs);
-//     dogs.forEach(function(age, i) {
-//         if (age >= 3) {
-//             console.log(`Dog number ${i + 1} is an adult,and is ${age} years old`);
-//         } else {
-//             console.log(`dog number ${i + 1} is still a puppy`);
-//         }
-//     });
-// };
-// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
-
-//////////////////challengeeeeeeee 222222//////////
-// const calcHumanAge = function(ages) {
-//     const adultHuman = ages.map(function(age) {
-//         return age <= 2 ? 2 * age : 16 + age * 4;
-//     });
-//     const adults = adultHuman.filter(function(age) {
-//         return age >= 18;
-//     });
-//     console.log(adultHuman);
-//     console.log(adults);
-
-//     const averages = adults.reduce(
-//         (acc, age, i, arr) => acc + age / arr.length,
-//         0
-//     );
-//     return averages;
-// };
-
-// const avg1 = calcHumanAge([5, 2, 4, 1, 15, 8, 3]);
-// const avg2 = calcHumanAge([16, 6, 10, 5, 6, 1, 4]);
-// console.log(avg1, avg2);
-
-///////////////////chaalengee 33333333//////////
-// const calcHumanAge = ages =>
-//     ages
-//     .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
-//     .filter(age => age >= 18)
-//     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
-
-// const avg1 = calcHumanAge([5, 2, 4, 1, 15, 8, 3]);
-// const avg2 = calcHumanAge([16, 6, 10, 5, 6, 1, 4]);
-// console.log(avg1, avg2);
